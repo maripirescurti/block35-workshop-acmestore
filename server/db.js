@@ -15,7 +15,7 @@ const createTables = async() => {
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(255)
     );
-    CREATE TABLE favorites(
+    CREATE TABLE products(
       id UUID PRIMARY KEY,
       name VARCHAR(100) UNIQUE NOT NULL
     );
@@ -77,7 +77,7 @@ const fetchProducts = async() => {
   return response.rows;
 };
 
-const fetchFavorites = async() => {
+const fetchFavorites = async(user_id) => {
   const SQL = `
     SELECT *
     FROM favorites
@@ -102,9 +102,9 @@ module.exports = {
   createTables,
   createProduct,
   createUser,
-  createFavorite,
   fetchUsers,
   fetchProducts,
+  createFavorite,
   fetchFavorites,
   destroyFavorite,
 }

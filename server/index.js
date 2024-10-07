@@ -5,9 +5,9 @@ const {
   createTables,
   createProduct,
   createUser,
-  createFavorite,
   fetchUsers,
   fetchProducts,
+  createFavorite,
   fetchFavorites,
   destroyFavorite,
 } = require('./db');
@@ -98,7 +98,7 @@ const init = async() => {
     createFavorite({ user_id: simba.id, product_id: ball.id})
   ]);
   console.log(await fetchFavorites(mari.id));
-  await destroyFavorite(favorites[0].id);
+  await destroyFavorite({ user_id: mari.id, id: favorites[0].id});
   console.log(await fetchFavorites(mari.id));
 
   console.log(`CURL localhost:3000/api/users/${mari.id}/favorites`);

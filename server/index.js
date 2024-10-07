@@ -35,6 +35,27 @@ const init = async() => {
     createProduct({ name: 'sponge' })
   ])
 
+  const users = await fetchUsers();
+  console.log(users);
+
+  const products = await fetchProducts();
+  console.log(products);
+
+  const favorites = await Promise.all([
+    createFavorite({ user_id: mari.id, product_id: sponge.id}),
+    createFavorite({ user_id: mari.id, product_id: pen.id}),
+    createFavorite({ user_id: ozan.id, product_id: ball.id}),
+    createFavorite({ user_id: simba.id, product_id: ball.id})
+  ]);
+  console.log(await fetchFavorites(mari.id));
+  await deleteFavorites(favorites[0].id);
+  console.log(await fetchFavorites(mari.id));
+
+  console.log(`CURL localhost:3000/api/users/${mari.id}/favorites`);
+  console.log(`CURL -X POST localhost:3000/api/users/${mari.id}/favorites -d '{"product_id":"${sponge.id}"}' -H 'Content-Type:application/json'`);
+  console.log(`CURL -X DELETE localhost:3000/api/users/${mari.id}/favorites/${favorites[3].id}'`);
+
+  console.log('data seeded');
 
   const port = process.env.PORT || 3000;
   app.listen(port, () => console.log(`listening on ${port}`));

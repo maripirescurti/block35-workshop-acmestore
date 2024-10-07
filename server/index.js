@@ -48,7 +48,7 @@ const init = async() => {
     createFavorite({ user_id: simba.id, product_id: ball.id})
   ]);
   console.log(await fetchFavorites(mari.id));
-  await deleteFavorites(favorites[0].id);
+  await destroyFavorite(favorites[0].id);
   console.log(await fetchFavorites(mari.id));
 
   console.log(`CURL localhost:3000/api/users/${mari.id}/favorites`);

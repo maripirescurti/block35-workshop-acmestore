@@ -1,6 +1,21 @@
 
 // imports
-const { client } = require('./db');
+const { 
+  client,
+  createTables,
+  createProduct,
+  createUser,
+  createFavorite,
+  fetchUsers,
+  fetchProducts,
+  fetchFavorites,
+  destroyFavorite,
+} = require('./db');
+
+const express = require ('express');
+const app = express();
+app.use(express.json());
+
 
 //APP ROUTES
 
